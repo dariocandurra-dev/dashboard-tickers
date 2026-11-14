@@ -10,11 +10,14 @@ Cada fila define:
   currency      -> moneda de cotizacion
   status        -> ok | empty | stale | mismapped
 """
+import os
+
 import pandas as pd
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC_XLSX = Path("/mnt/user-data/uploads/Tickers.xlsx")
+# El Excel viaja con el proyecto (raw/); TICKERS_XLSX permite apuntar a otro
+SRC_XLSX = Path(os.getenv("TICKERS_XLSX", ROOT / "raw" / "Tickers.xlsx"))
 
 # --- Correcciones y mapeo a yfinance -------------------------------------
 # Regla general: ticker US -> mismo simbolo. Argentinas -> se privilegia el ADR
