@@ -1,0 +1,131 @@
+ticker,empresa,pais,mercado_origen,sheet,yf_symbol,venue,currency,asset_type,status,nota,grupo,sector,industria
+AAPL,Apple Inc.,EE.UU.,Nasdaq,AAPL,AAPL,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Hardware
+MSFT,Microsoft Corp.,EE.UU.,Nasdaq,MSFT,MSFT,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Software
+NVDA,NVIDIA Corp.,EE.UU.,Nasdaq,NVDA,NVDA,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Semiconductores
+AMZN,Amazon.com Inc.,EE.UU.,Nasdaq,AMZN,AMZN,Nasdaq,USD,EQUITY,ok,,Consumo Discrecional,Consumo Discrecional,Comercio electrónico
+META,Meta Platforms Inc.,EE.UU.,Nasdaq,META,META,Nasdaq,USD,EQUITY,ok,,Servicios de Comunicación,Servicios de Comunicación,Medios interactivos
+GOOGL,Alphabet Inc.,EE.UU.,Nasdaq,GOOGL,GOOGL,Nasdaq,USD,EQUITY,ok,,Servicios de Comunicación,Servicios de Comunicación,Medios interactivos
+TSLA,Tesla Inc.,EE.UU.,Nasdaq,TSLA,TSLA,Nasdaq,USD,EQUITY,ok,,Consumo Discrecional,Consumo Discrecional,Automotrices
+QCOM,Qualcomm Inc.,EE.UU.,Nasdaq,QCOM,QCOM,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Semiconductores
+INTC,Intel Corp.,EE.UU.,Nasdaq,INTC,INTC,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Semiconductores
+ADI,Analog Devices Inc.,EE.UU.,Nasdaq,ADI,ADI,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Semiconductores
+CRM,Salesforce Inc.,EE.UU.,NYSE,CRM,CRM,NYSE,USD,EQUITY,ok,,Tecnología,Tecnología,Software
+ORCL,Oracle Corp.,EE.UU.,NYSE,ORCL,ORCL,NYSE,USD,EQUITY,ok,,Tecnología,Tecnología,Software
+CSCO,Cisco Systems Inc.,EE.UU.,Nasdaq,CSCO,CSCO,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Equipamiento de red
+AMD,Advanced Micro Devices Inc.,EE.UU.,Nasdaq,AMD,AMD,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Semiconductores
+AVGO,Broadcom Inc.,EE.UU.,Nasdaq,AVGO,AVGO,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Semiconductores
+PEP,PepsiCo Inc.,EE.UU.,Nasdaq,PEP,PEP,Nasdaq,USD,EQUITY,ok,,Consumo Básico,Consumo Básico,Bebidas y snacks
+COST,Costco Wholesale Corp.,EE.UU.,Nasdaq,COST,COST,Nasdaq,USD,EQUITY,ok,,Consumo Básico,Consumo Básico,Retail de consumo masivo
+MDLZ,Mondelez International Inc.,EE.UU.,Nasdaq,MDLZ,MDLZ,NASDAQ,USD,EQUITY,stale,Corta 2026-01-12 (fuente XSGO),Consumo Básico,Consumo Básico,Alimentos
+KO,Coca Cola,EE.UU.,NYSE,KO,KO,NYSE,USD,EQUITY,ok,,Consumo Básico,Consumo Básico,Bebidas
+ISRG,Intuitive Surgical Inc.,EE.UU.,Nasdaq,ISRG,ISRG,Nasdaq,USD,EQUITY,ok,,Salud,Salud,Equipamiento médico
+MELI,Mercado Libre,Argentina,Nasdaq,MELI,MELI,Nasdaq,USD,EQUITY,ok,,Argentina,Consumo Discrecional,Comercio electrónico
+PYPL,PayPal Holdings Inc.,EE.UU.,Nasdaq,PYPL,PYPL,Nasdaq,USD,EQUITY,ok,,Financiero,Financiero,Procesadores de pago
+ADBE,Adobe Inc.,EE.UU.,Nasdaq,ADBE,ADBE,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Software
+TEAM,Atlassian Corp.,Australia,Nasdaq,TEAM,TEAM,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Software
+SHOP,Shopify Inc.,Canadá,NYSE,,SHOP,NYSE,USD,EQUITY,empty,Hoja vacia: reponer full historico via API,Tecnología,Tecnología,Software
+GLOB,Globant,Argentina,Nasdaq,GLOB,GLOB,Nasdaq,USD,EQUITY,ok,,Argentina,Tecnología,Servicios de TI
+BIDU,Baidu Inc.,China,Nasdaq,BIDU,BIDU,Nasdaq,USD,EQUITY,ok,,Servicios de Comunicación,Servicios de Comunicación,Medios interactivos
+ZM,Zoom Video Communications Inc.,EE.UU.,Nasdaq,ZM,ZM,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Software
+DDOG,Datadog Inc.,EE.UU.,Nasdaq,DDOG,DDOG,Nasdaq,USD,EQUITY,ok,,Tecnología,Tecnología,Software
+SNAP,Snap Inc.,EE.UU.,NYSE,SNAP,SNAP,NYSE,USD,EQUITY,ok,,Servicios de Comunicación,Servicios de Comunicación,Medios interactivos
+UNH,UnitedHealth Group Inc.,EE.UU.,NYSE,UNH,UNH,NYSE,USD,EQUITY,ok,,Salud,Salud,Seguros de salud
+JNJ,Johnson & Johnson,EE.UU.,NYSE,JNJ,JNJ,NYSE,USD,EQUITY,ok,,Salud,Salud,Farmacéuticas
+PFE,Pfizer Inc.,EE.UU.,NYSE,PFE,PFE,NYSE,USD,EQUITY,ok,,Salud,Salud,Farmacéuticas
+MSTR,Microstrategy,EE.UU.,NYSE,MSTR,MSTR,NYSE,USD,EQUITY,ok,,Tecnología,Tecnología,Software y tesorería en bitcoin
+MCD,McDonald's Corp.,EE.UU.,NYSE,MCD,MCD,NYSE,USD,EQUITY,ok,,Consumo Discrecional,Consumo Discrecional,Restaurantes
+WMT,Walmart Inc.,EE.UU.,NYSE,WMT,WMT,NYSE,USD,EQUITY,ok,,Consumo Básico,Consumo Básico,Retail de consumo masivo
+PG,Procter & Gamble Co.,EE.UU.,NYSE,PG,PG,NYSE,USD,EQUITY,ok,,Consumo Básico,Consumo Básico,Cuidado personal
+CAT,Caterpillar Inc.,EE.UU.,NYSE,,CAT,NYSE,USD,EQUITY,empty,Hoja vacia: reponer full historico via API,Industrial,Industrial,Maquinaria
+BA,Boeing Co.,EE.UU.,NYSE,BA,BA,NYSE,USD,EQUITY,ok,,Industrial,Industrial,Aeroespacial y defensa
+MMM,3M Co.,EE.UU.,NYSE,MMM,MMM,NYSE,USD,EQUITY,ok,,Industrial,Industrial,Conglomerado industrial
+DIS,Walt Disney Co.,EE.UU.,NYSE,DIS,DIS,NYSE,USD,EQUITY,ok,,Servicios de Comunicación,Servicios de Comunicación,Entretenimiento
+VZ,Verizon Communications Inc.,EE.UU.,NYSE,VZ,VZ,NYSE,USD,EQUITY,ok,,Servicios de Comunicación,Servicios de Comunicación,Telecomunicaciones
+T,AT&T Inc.,EE.UU.,NYSE,T,T,NYSE,USD,EQUITY,ok,,Servicios de Comunicación,Servicios de Comunicación,Telecomunicaciones
+IBM,International Business Machines,EE.UU.,NYSE,IBM,IBM,NYSE,USD,EQUITY,ok,,Tecnología,Tecnología,Servicios de TI
+GS,Goldman Sachs Group Inc.,EE.UU.,NYSE,GS,GS,NYSE,USD,EQUITY,ok,,Financiero,Financiero,Banca de inversión
+JPM,JPMorgan Chase & Co.,EE.UU.,NYSE,JPM,JPM,NYSE,USD,EQUITY,ok,,Financiero,Financiero,Bancos
+AXP,American Express Co.,EE.UU.,NYSE,AXP,AXP,NYSE,USD,EQUITY,ok,,Financiero,Financiero,Tarjetas de crédito
+C,Citigroup Inc.,EE.UU.,NYSE,C,C,NYSE,USD,EQUITY,ok,,Financiero,Financiero,Bancos
+HD,Home Depot Inc.,EE.UU.,NYSE,HD,HD,NYSE,USD,EQUITY,ok,,Consumo Discrecional,Consumo Discrecional,Retail especializado
+NKE,Nike Inc.,EE.UU.,NYSE,NKE,NKE,NYSE,USD,EQUITY,ok,,Consumo Discrecional,Consumo Discrecional,Indumentaria
+DOW,Dow Inc.,EE.UU.,NYSE,DOW,DOW,NYSE,USD,EQUITY,ok,,Materiales,Materiales,Químicos
+XOM,ExxonMobil Corp.,EE.UU.,NYSE,XOM,XOM,NYSE,USD,EQUITY,ok,,Energía,Energía,Petróleo integrado
+CVX,Chevron Corp.,EE.UU.,NYSE,CVX,CVX,NYSE,USD,EQUITY,ok,,Energía,Energía,Petróleo integrado
+GE,General Electric Co.,EE.UU.,NYSE,GE,GE,NYSE,USD,EQUITY,ok,,Industrial,Industrial,Conglomerado industrial
+FDX,FedEx Corp.,EE.UU.,NYSE,FDX,FDX,NYSE,USD,EQUITY,ok,,Industrial,Industrial,Logística
+UPS,United Parcel Service Inc.,EE.UU.,NYSE,UPS,UPS,NYSE,USD,EQUITY,ok,,Industrial,Industrial,Logística
+MO,Altria Group Inc.,EE.UU.,NYSE,MO,MO,NYSE,USD,EQUITY,ok,,Consumo Básico,Consumo Básico,Tabaco
+DUK,Duke Energy Corp.,EE.UU.,NYSE,DUK,DUK,NYSE,USD,EQUITY,ok,,Servicios Públicos,Servicios Públicos,Electricidad
+SO,Southern Co.,EE.UU.,NYSE,SO,SO,NYSE,USD,EQUITY,ok,,Servicios Públicos,Servicios Públicos,Electricidad
+NEE,NextEra Energy Inc.,EE.UU.,NYSE,NEE,NEE,NYSE,USD,EQUITY,ok,,Servicios Públicos,Servicios Públicos,Electricidad
+SPY,SPDR S&P 500 ETF,EE.UU.,NYSEArca,SPY,SPY,NYSEArca,USD,ETF,ok,,Índices,Mercado amplio,S&P 500
+QQQ,Invesco QQQ Trust,EE.UU.,Nasdaq,QQQ,QQQ,Nasdaq,USD,ETF,ok,,Índices,Mercado amplio,Nasdaq 100
+DIA,SPDR Dow Jones ETF,EE.UU.,NYSEArca,,DIA,NYSEArca,USD,ETF,empty,Hoja vacia: reponer full historico via API,Índices,Mercado amplio,Dow Jones
+IWM,iShares Russell 2000 ETF,EE.UU.,NYSEArca,IWM,IWM,NYSEArca,USD,ETF,ok,,Índices,Mercado amplio,Small caps
+EEM,iShares Emerging Markets ETF,Global,NYSEArca,,EEM,NYSEArca,USD,ETF,empty,Hoja vacia: reponer full historico via API,Índices,Regional,Emergentes
+EWZ,iShares MSCI Brazil ETF,Brasil,NYSEArca,EWZ,EWZ,NYSEArca,USD,ETF,ok,,Índices,Regional,Brasil
+XLE,Energy Select Sector ETF,EE.UU.,NYSEArca,XLE,XLE,NYSEArca,USD,ETF,ok,,Índices,Energía,Sector energía
+XLF,Financial Select Sector ETF,EE.UU.,NYSEArca,XLF,XLF,NYSEArca,USD,ETF,ok,,Índices,Financiero,Sector financiero
+ARKK,ARK Innovation ETF,EE.UU.,NYSEArca,ARKK,ARKK,NYSEArca,USD,ETF,ok,,Índices,Tecnología,Innovación disruptiva
+GLD,SPDR Gold Trust,EE.UU.,NYSE,GLD,GLD,NYSE,USD,ETF,ok,,Índices,Materiales,Oro
+GGAL,Grupo Financiero Galicia,Argentina,BYMA,GGAL,GGAL,BYMA,USD,EQUITY,ok,,Argentina,Financiero,Bancos
+BMA,Banco Macro,Argentina,BYMA,BMA,BMA,BYMA,USD,EQUITY,ok,,Argentina,Financiero,Bancos
+YPFD,YPF S.A.,Argentina,BYMA,,YPF,NYSE,USD,EQUITY,empty,ADR YPF,Argentina,Energía,Petróleo integrado
+PAMP,Pampa Energía,Argentina,BYMA,,PAM,NYSE,USD,EQUITY,empty,ADR Pampa Energia (PAM),Argentina,Energía,Energía integrada
+TGSU2,Transportadora Gas del Sur,Argentina,BYMA,,TGS,NYSE,USD,EQUITY,empty,ADR TGS,Argentina,Energía,Transporte de gas
+CEPU,Central Puerto,Argentina,BYMA,CEPU,CEPU,BYMA,USD,EQUITY,ok,,Argentina,Servicios Públicos,Generación eléctrica
+EDN,Edenor,Argentina,BYMA,EDN,EDN,BYMA,USD,EQUITY,ok,,Argentina,Servicios Públicos,Distribución eléctrica
+LOMA,Loma Negra,Argentina,BYMA,LOMA,LOMA,BYMA,USD,EQUITY,ok,,Argentina,Materiales,Cemento
+IRSA,IRSA Propiedades Comerciales,Argentina,BYMA,IRSA,IRS,BYMA,USD,EQUITY,ok,,Argentina,Inmobiliario,Real estate
+CRES,Cresud S.A.,Argentina,BYMA,,CRESY,NASDAQ,USD,EQUITY,empty,ADR Cresud (CRESY),Argentina,Consumo Básico,Agropecuaria
+TECO2,Telecom Argentina,Argentina,BYMA,TECO2,TEO,NYSE,USD,EQUITY,stale,Corta 2025-07-25. Plaza de origen sin identificar en el Excel,Argentina,Servicios de Comunicación,Telecomunicaciones
+VISTA,Vista Energy,Argentina,BYMA,,VIST,NYSE,USD,EQUITY,mismapped,La hoja VISTA traia VGZ (Vista Gold). Descartada: refetch VIST,Argentina,Energía,Exploración y producción
+AUSO,Autopistas del Sol,Argentina,BYMA,,AUSO.BA,BYMA,ARS,EQUITY,mismapped,La hoja AUSO traia ASML. Sin ADR: serie local en ARS,Argentina,Industrial,Concesiones viales
+ALUA,Aluar Aluminio Argentino,Argentina,BYMA,,ALUA.BA,BYMA,ARS,EQUITY,empty,Sin ADR: serie local en ARS,Argentina,Materiales,Aluminio
+HAVN,Havanna S.A.,Argentina,BYMA,,HAVA.BA,BYMA,ARS,EQUITY,mismapped,"La hoja HAVN traia Havn Life (CSE, corta 2023). Refetch Havanna",Argentina,Consumo Discrecional,Alimentos y cafeterías
+BABA,Alibaba Group,China,NYSE,BABA,BABA,NYSE,USD,EQUITY,ok,,Consumo Discrecional,Consumo Discrecional,Comercio electrónico
+NVO,Novo Nordisk,Dinamarca,NYSE,NVO,NVO,NYSE,USD,EQUITY,ok,,Salud,Salud,Farmacéuticas
+TM,Toyota Motor Corp.,Japón,NYSE,TM,TM,NYSE,USD,EQUITY,ok,,Consumo Discrecional,Consumo Discrecional,Automotrices
+ASML,ASML Holding,PaísesBajos,Nasdaq,AUSO,ASML,NASDAQ,USD,EQUITY,mismapped,"Historico presente en hoja 'AUSO' (XAMS, EUR). Refetch ADR USD",Tecnología,Tecnología,Equipamiento de semiconductores
+SAP,SAP SE,Alemania,NYSE,SAP,SAP.DE,XETR,EUR,EQUITY,ok,"Plaza local Frankfurt, en euros",Tecnología,Tecnología,Software
+HSBC,HSBC Holdings,ReinoUnido,NYSE,HSBC,HSBC,NYSE,USD,EQUITY,ok,,Financiero,Financiero,Bancos
+UL,Unilever PLC,ReinoUnido,NYSE,UL,UL,NYSE,USD,EQUITY,ok,,Consumo Básico,Consumo Básico,Cuidado personal
+RY,Royal Bank of Canada,Canadá,NYSE,RY,RY,NYSE,USD,EQUITY,ok,,Financiero,Financiero,Bancos
+INFY,Infosys Ltd.,India,NYSE,INFY,INFY.NS,NSE,INR,EQUITY,ok,"Plaza local NSE, en rupias",Tecnología,Tecnología,Servicios de TI
+VALE,Vale S.A.,Brasil,NYSE,VALE,VALE,NYSE,USD,EQUITY,ok,,Materiales,Materiales,Minería
+IBN,ICICI Bank,India,NYSE,IBN,IBN,NYSE,USD,EQUITY,ok,,Financiero,Financiero,Bancos
+ABEV,Ambev S.A.,Brasil,NYSE,ABEV,ABEV,NYSE,USD,EQUITY,ok,,Consumo Básico,Consumo Básico,Bebidas
+AXON,Axon Enterprise Inc.,EE.UU.,Nasdaq,AXON,AXON,Nasdaq,USD,EQUITY,ok,,Industrial,Industrial,Aeroespacial y defensa
+SMH,VanEck Semiconductor ETF,EE.UU.,Nasdaq,SMH,SMH,Nasdaq,USD,ETF,ok,,Índices,Tecnología,Semiconductores
+XLV,Health Care Select Sector ETF,EE.UU.,NYSE,XLV,XLV,NYSE,USD,ETF,ok,,Índices,Salud,Sector salud
+SPCX,SpaceX,EE.UU.,EE.UU.,,SPCX,,USD,EQUITY,empty,IPO 12-jun-2026: sin MA200 hasta ~abr-2027,Industrial,Industrial,Aeroespacial
+BRK-B,Berkshire Hathaway,EE.UU.,EE.UU.,,BRK-B,,USD,EQUITY,empty,,Financiero,Financiero,Holding y seguros
+TSM,Taiwan Semiconductor,Taiwán,Taiwán,,TSM,,USD,EQUITY,empty,ADR NYSE,Tecnología,Tecnología,Semiconductores
+V,Visa Inc.,EE.UU.,EE.UU.,,V,,USD,EQUITY,empty,,Financiero,Financiero,Procesadores de pago
+MA,Mastercard Inc.,EE.UU.,EE.UU.,,MA,,USD,EQUITY,empty,,Financiero,Financiero,Procesadores de pago
+LLY,Eli Lilly & Co.,EE.UU.,EE.UU.,,LLY,,USD,EQUITY,empty,,Salud,Salud,Farmacéuticas
+NFLX,Netflix Inc.,EE.UU.,EE.UU.,,NFLX,,USD,EQUITY,empty,,Servicios de Comunicación,Servicios de Comunicación,Entretenimiento
+BAC,Bank of America,EE.UU.,EE.UU.,,BAC,,USD,EQUITY,empty,,Financiero,Financiero,Bancos
+PLTR,Palantir Technologies,EE.UU.,EE.UU.,,PLTR,,USD,EQUITY,empty,,Tecnología,Tecnología,Software
+MU,Micron Technology,EE.UU.,EE.UU.,,MU,,USD,EQUITY,empty,,Tecnología,Tecnología,Semiconductores
+EWY,iShares MSCI South Korea ETF,Corea,Corea,,EWY,,USD,ETF,empty,Exposición a Samsung Electronics y SK Hynix,Índices,Regional,Corea
+PBR,Petrobras,Brasil,Brasil,,PBR,,USD,EQUITY,empty,ADR NYSE,Energía,Energía,Petróleo integrado
+ITUB,Itaú Unibanco,Brasil,Brasil,,ITUB,,USD,EQUITY,empty,ADR NYSE,Financiero,Financiero,Bancos
+XLK,Technology Select Sector SPDR,EE.UU.,EE.UU.,,XLK,,USD,ETF,empty,Completa el mapa sectorial,Índices,Tecnología,Sector tecnología
+XLY,Consumer Discretionary SPDR,EE.UU.,EE.UU.,,XLY,,USD,ETF,empty,Completa el mapa sectorial,Índices,Consumo Discrecional,Sector consumo discrecional
+XLP,Consumer Staples SPDR,EE.UU.,EE.UU.,,XLP,,USD,ETF,empty,Completa el mapa sectorial,Índices,Consumo Básico,Sector consumo básico
+XLI,Industrial Select Sector SPDR,EE.UU.,EE.UU.,,XLI,,USD,ETF,empty,Completa el mapa sectorial,Índices,Industrial,Sector industrial
+XLU,Utilities Select Sector SPDR,EE.UU.,EE.UU.,,XLU,,USD,ETF,empty,Completa el mapa sectorial,Índices,Servicios Públicos,Sector servicios públicos
+XLB,Materials Select Sector SPDR,EE.UU.,EE.UU.,,XLB,,USD,ETF,empty,Completa el mapa sectorial,Índices,Materiales,Sector materiales
+XLRE,Real Estate Select Sector SPDR,EE.UU.,EE.UU.,,XLRE,,USD,ETF,empty,Completa el mapa sectorial,Índices,Inmobiliario,Sector inmobiliario
+XLC,Communication Services SPDR,EE.UU.,EE.UU.,,XLC,,USD,ETF,empty,Completa el mapa sectorial,Índices,Servicios de Comunicación,Sector comunicaciones
+TLT,iShares 20+ Year Treasury Bond,EE.UU.,EE.UU.,,TLT,,USD,ETF,empty,Tasa larga: el driver macro dominante,Índices,Renta fija,Tesoros a 20+ años
+HYG,iShares High Yield Corporate Bond,EE.UU.,EE.UU.,,HYG,,USD,ETF,empty,Riesgo de credito corporativo,Índices,Renta fija,Alto rendimiento corporativo
+UUP,Invesco DB US Dollar Index,EE.UU.,EE.UU.,,UUP,,USD,ETF,empty,Dolar: condiciona a los emergentes,Índices,Divisas,Índice dólar
+ARGT,Global X MSCI Argentina ETF,Argentina,Argentina,,ARGT,,USD,ETF,empty,Benchmark de las 17 argentinas del panel,Índices,Regional,Argentina
+IBIT,iShares Bitcoin Trust,EE.UU.,EE.UU.,,IBIT,,USD,ETF,empty,Contraparte natural de MSTR,Índices,Cripto,Bitcoin
+VIX,Indice de volatilidad CBOE,EE.UU.,EE.UU.,,^VIX,,USD,ETF,empty,Regimen de riesgo. No es ETF: es indice,Índices,Volatilidad,Índice de volatilidad CBOE
+RACE,Ferrari N.V.,Italia,Italia,,RACE,,USD,EQUITY,empty,ADR NYSE,Consumo Discrecional,Consumo Discrecional,Automotrices de lujo
+NU,Nu Holdings (Nubank),Brasil,Brasil,,NU,,USD,EQUITY,empty,,Financiero,Financiero,Banca digital
+SBUX,Starbucks Corp.,EE.UU.,EE.UU.,,SBUX,,USD,EQUITY,empty,,Consumo Discrecional,Consumo Discrecional,Restaurantes

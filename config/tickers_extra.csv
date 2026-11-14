@@ -1,0 +1,31 @@
+ticker,empresa,sector,pais,yf_symbol,asset_type,nota
+SPCX,SpaceX,Aeroespacial,EE.UU.,SPCX,EQUITY,IPO 12-jun-2026: sin MA200 hasta ~abr-2027
+BRK-B,Berkshire Hathaway,Holding,EE.UU.,BRK-B,EQUITY,
+TSM,Taiwan Semiconductor,Semiconductores,Taiwán,TSM,EQUITY,ADR NYSE
+V,Visa Inc.,Pagos,EE.UU.,V,EQUITY,
+MA,Mastercard Inc.,Pagos,EE.UU.,MA,EQUITY,
+LLY,Eli Lilly & Co.,Salud,EE.UU.,LLY,EQUITY,
+NFLX,Netflix Inc.,Medios,EE.UU.,NFLX,EQUITY,
+BAC,Bank of America,Bancos,EE.UU.,BAC,EQUITY,
+PLTR,Palantir Technologies,Software,EE.UU.,PLTR,EQUITY,
+MU,Micron Technology,Semiconductores,EE.UU.,MU,EQUITY,
+EWY,iShares MSCI South Korea ETF,ETF,Corea,EWY,ETF,Exposición a Samsung Electronics y SK Hynix
+PBR,Petrobras,Energía,Brasil,PBR,EQUITY,ADR NYSE
+ITUB,Itaú Unibanco,Bancos,Brasil,ITUB,EQUITY,ADR NYSE
+XLK,Technology Select Sector SPDR,ETF,EE.UU.,XLK,ETF,Completa el mapa sectorial
+XLY,Consumer Discretionary SPDR,ETF,EE.UU.,XLY,ETF,Completa el mapa sectorial
+XLP,Consumer Staples SPDR,ETF,EE.UU.,XLP,ETF,Completa el mapa sectorial
+XLI,Industrial Select Sector SPDR,ETF,EE.UU.,XLI,ETF,Completa el mapa sectorial
+XLU,Utilities Select Sector SPDR,ETF,EE.UU.,XLU,ETF,Completa el mapa sectorial
+XLB,Materials Select Sector SPDR,ETF,EE.UU.,XLB,ETF,Completa el mapa sectorial
+XLRE,Real Estate Select Sector SPDR,ETF,EE.UU.,XLRE,ETF,Completa el mapa sectorial
+XLC,Communication Services SPDR,ETF,EE.UU.,XLC,ETF,Completa el mapa sectorial
+TLT,iShares 20+ Year Treasury Bond,ETF,EE.UU.,TLT,ETF,Tasa larga: el driver macro dominante
+HYG,iShares High Yield Corporate Bond,ETF,EE.UU.,HYG,ETF,Riesgo de credito corporativo
+UUP,Invesco DB US Dollar Index,ETF,EE.UU.,UUP,ETF,Dolar: condiciona a los emergentes
+ARGT,Global X MSCI Argentina ETF,ETF,Argentina,ARGT,ETF,Benchmark de las 17 argentinas del panel
+IBIT,iShares Bitcoin Trust,ETF,EE.UU.,IBIT,ETF,Contraparte natural de MSTR
+VIX,Indice de volatilidad CBOE,Indice,EE.UU.,^VIX,ETF,Regimen de riesgo. No es ETF: es indice
+RACE,Ferrari N.V.,Consumo Discrecional,Italia,RACE,EQUITY,ADR NYSE
+NU,Nu Holdings (Nubank),Financiero,Brasil,NU,EQUITY,
+SBUX,Starbucks Corp.,Consumo Discrecional,EE.UU.,SBUX,EQUITY,

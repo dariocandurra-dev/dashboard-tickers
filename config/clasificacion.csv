@@ -1,0 +1,131 @@
+ticker,grupo,sector,industria
+CRES,Argentina,Consumo Básico,Agropecuaria
+HAVN,Argentina,Consumo Discrecional,Alimentos y cafeterías
+MELI,Argentina,Consumo Discrecional,Comercio electrónico
+PAMP,Argentina,Energía,Energía integrada
+TGSU2,Argentina,Energía,Transporte de gas
+VISTA,Argentina,Energía,Exploración y producción
+YPFD,Argentina,Energía,Petróleo integrado
+BMA,Argentina,Financiero,Bancos
+GGAL,Argentina,Financiero,Bancos
+AUSO,Argentina,Industrial,Concesiones viales
+IRSA,Argentina,Inmobiliario,Real estate
+ALUA,Argentina,Materiales,Aluminio
+LOMA,Argentina,Materiales,Cemento
+CEPU,Argentina,Servicios Públicos,Generación eléctrica
+EDN,Argentina,Servicios Públicos,Distribución eléctrica
+TECO2,Argentina,Servicios de Comunicación,Telecomunicaciones
+GLOB,Argentina,Tecnología,Servicios de TI
+ABEV,Consumo Básico,Consumo Básico,Bebidas
+COST,Consumo Básico,Consumo Básico,Retail de consumo masivo
+KO,Consumo Básico,Consumo Básico,Bebidas
+MDLZ,Consumo Básico,Consumo Básico,Alimentos
+MO,Consumo Básico,Consumo Básico,Tabaco
+PEP,Consumo Básico,Consumo Básico,Bebidas y snacks
+PG,Consumo Básico,Consumo Básico,Cuidado personal
+UL,Consumo Básico,Consumo Básico,Cuidado personal
+WMT,Consumo Básico,Consumo Básico,Retail de consumo masivo
+AMZN,Consumo Discrecional,Consumo Discrecional,Comercio electrónico
+BABA,Consumo Discrecional,Consumo Discrecional,Comercio electrónico
+HD,Consumo Discrecional,Consumo Discrecional,Retail especializado
+MCD,Consumo Discrecional,Consumo Discrecional,Restaurantes
+NKE,Consumo Discrecional,Consumo Discrecional,Indumentaria
+RACE,Consumo Discrecional,Consumo Discrecional,Automotrices de lujo
+SBUX,Consumo Discrecional,Consumo Discrecional,Restaurantes
+TM,Consumo Discrecional,Consumo Discrecional,Automotrices
+TSLA,Consumo Discrecional,Consumo Discrecional,Automotrices
+CVX,Energía,Energía,Petróleo integrado
+PBR,Energía,Energía,Petróleo integrado
+XOM,Energía,Energía,Petróleo integrado
+AXP,Financiero,Financiero,Tarjetas de crédito
+BAC,Financiero,Financiero,Bancos
+BRK-B,Financiero,Financiero,Holding y seguros
+C,Financiero,Financiero,Bancos
+GS,Financiero,Financiero,Banca de inversión
+HSBC,Financiero,Financiero,Bancos
+IBN,Financiero,Financiero,Bancos
+ITUB,Financiero,Financiero,Bancos
+JPM,Financiero,Financiero,Bancos
+MA,Financiero,Financiero,Procesadores de pago
+NU,Financiero,Financiero,Banca digital
+PYPL,Financiero,Financiero,Procesadores de pago
+RY,Financiero,Financiero,Bancos
+V,Financiero,Financiero,Procesadores de pago
+AXON,Industrial,Industrial,Aeroespacial y defensa
+BA,Industrial,Industrial,Aeroespacial y defensa
+CAT,Industrial,Industrial,Maquinaria
+FDX,Industrial,Industrial,Logística
+GE,Industrial,Industrial,Conglomerado industrial
+MMM,Industrial,Industrial,Conglomerado industrial
+SPCX,Industrial,Industrial,Aeroespacial
+UPS,Industrial,Industrial,Logística
+DOW,Materiales,Materiales,Químicos
+VALE,Materiales,Materiales,Minería
+ISRG,Salud,Salud,Equipamiento médico
+JNJ,Salud,Salud,Farmacéuticas
+LLY,Salud,Salud,Farmacéuticas
+NVO,Salud,Salud,Farmacéuticas
+PFE,Salud,Salud,Farmacéuticas
+UNH,Salud,Salud,Seguros de salud
+DUK,Servicios Públicos,Servicios Públicos,Electricidad
+NEE,Servicios Públicos,Servicios Públicos,Electricidad
+SO,Servicios Públicos,Servicios Públicos,Electricidad
+BIDU,Servicios de Comunicación,Servicios de Comunicación,Medios interactivos
+DIS,Servicios de Comunicación,Servicios de Comunicación,Entretenimiento
+GOOGL,Servicios de Comunicación,Servicios de Comunicación,Medios interactivos
+META,Servicios de Comunicación,Servicios de Comunicación,Medios interactivos
+NFLX,Servicios de Comunicación,Servicios de Comunicación,Entretenimiento
+SNAP,Servicios de Comunicación,Servicios de Comunicación,Medios interactivos
+T,Servicios de Comunicación,Servicios de Comunicación,Telecomunicaciones
+VZ,Servicios de Comunicación,Servicios de Comunicación,Telecomunicaciones
+AAPL,Tecnología,Tecnología,Hardware
+ADBE,Tecnología,Tecnología,Software
+ADI,Tecnología,Tecnología,Semiconductores
+AMD,Tecnología,Tecnología,Semiconductores
+ASML,Tecnología,Tecnología,Equipamiento de semiconductores
+AVGO,Tecnología,Tecnología,Semiconductores
+CRM,Tecnología,Tecnología,Software
+CSCO,Tecnología,Tecnología,Equipamiento de red
+DDOG,Tecnología,Tecnología,Software
+IBM,Tecnología,Tecnología,Servicios de TI
+INFY,Tecnología,Tecnología,Servicios de TI
+INTC,Tecnología,Tecnología,Semiconductores
+MSFT,Tecnología,Tecnología,Software
+MSTR,Tecnología,Tecnología,Software y tesorería en bitcoin
+MU,Tecnología,Tecnología,Semiconductores
+NVDA,Tecnología,Tecnología,Semiconductores
+ORCL,Tecnología,Tecnología,Software
+PLTR,Tecnología,Tecnología,Software
+QCOM,Tecnología,Tecnología,Semiconductores
+SAP,Tecnología,Tecnología,Software
+SHOP,Tecnología,Tecnología,Software
+TEAM,Tecnología,Tecnología,Software
+TSM,Tecnología,Tecnología,Semiconductores
+ZM,Tecnología,Tecnología,Software
+XLP,Índices,Consumo Básico,Sector consumo básico
+XLY,Índices,Consumo Discrecional,Sector consumo discrecional
+IBIT,Índices,Cripto,Bitcoin
+UUP,Índices,Divisas,Índice dólar
+XLE,Índices,Energía,Sector energía
+XLF,Índices,Financiero,Sector financiero
+XLI,Índices,Industrial,Sector industrial
+XLRE,Índices,Inmobiliario,Sector inmobiliario
+GLD,Índices,Materiales,Oro
+XLB,Índices,Materiales,Sector materiales
+DIA,Índices,Mercado amplio,Dow Jones
+IWM,Índices,Mercado amplio,Small caps
+QQQ,Índices,Mercado amplio,Nasdaq 100
+SPY,Índices,Mercado amplio,S&P 500
+ARGT,Índices,Regional,Argentina
+EEM,Índices,Regional,Emergentes
+EWY,Índices,Regional,Corea
+EWZ,Índices,Regional,Brasil
+HYG,Índices,Renta fija,Alto rendimiento corporativo
+TLT,Índices,Renta fija,Tesoros a 20+ años
+XLV,Índices,Salud,Sector salud
+XLU,Índices,Servicios Públicos,Sector servicios públicos
+XLC,Índices,Servicios de Comunicación,Sector comunicaciones
+ARKK,Índices,Tecnología,Innovación disruptiva
+SMH,Índices,Tecnología,Semiconductores
+XLK,Índices,Tecnología,Sector tecnología
+VIX,Índices,Volatilidad,Índice de volatilidad CBOE
