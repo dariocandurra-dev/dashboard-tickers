@@ -1,0 +1,13 @@
+kpi,con_dato,total,cobertura
+revenue,102,103,0.99
+net_income,102,103,0.99
+margen_bruto,89,103,0.864
+margen_operativo,91,103,0.883
+margen_neto,102,103,0.99
+roe,102,103,0.99
+roa,102,103,0.99
+deuda_patrimonio,101,103,0.981
+free_cash_flow,103,103,1.0
+market_cap,101,103,0.981
+pe_trailing,98,103,0.951
+ev_ebitda,91,103,0.883

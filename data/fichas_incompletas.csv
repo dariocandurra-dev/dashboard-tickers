@@ -1,0 +1,9 @@
+ticker,empresa,pais,yf_symbol,completitud,status
+BMA,Banco Macro,Argentina,BMA,0.3333333333333333,ok
+BIDU,Baidu Inc.,China,BIDU,0.8333333333333334,ok
+DOW,Dow Inc.,EE.UU.,DOW,0.8333333333333334,ok
+EDN,Edenor,Argentina,EDN,0.8333333333333334,ok
+INTC,Intel Corp.,EE.UU.,INTC,0.8333333333333334,ok
+MSTR,Microstrategy,EE.UU.,MSTR,0.8333333333333334,ok
+SNAP,Snap Inc.,EE.UU.,SNAP,0.8333333333333334,ok
+TECO2,Telecom Argentina,Argentina,TEO,0.8333333333333334,stale
