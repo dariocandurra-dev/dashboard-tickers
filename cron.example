@@ -1,0 +1,8 @@
+# Actualizacion diaria del panel, 19:30 de Buenos Aires, dias habiles.
+# Instalar con: crontab -e
+30 19 * * 1-5 cd /ruta/al/proyecto && /usr/bin/python3 scripts/update_all.py --canal consola >> data/cron.log 2>&1
+
+# Variables para el canal de email (alternativa a --canal consola):
+#   SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, ALERT_TO
+# Para webhook de Slack o Teams:
+#   ALERT_WEBHOOK_URL

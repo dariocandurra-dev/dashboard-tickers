@@ -1,0 +1,14 @@
+# Todo esto se regenera en cada corrida: versionarlo solo engorda el historial
+.venv/
+__pycache__/
+*.pyc
+Dashboard_Tickers.html
+_site/
+data/indicators.parquet
+data/signals.parquet
+data/prices_wide.parquet
+data/base100.parquet
+data/base100_propio.parquet
+data/update.log
+data/cron.log
+data/alertas/
