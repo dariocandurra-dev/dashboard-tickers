@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Panel de 100 tickers</title>
+<title>Panel de acciones y ETFs</title>
 <style>
 :root{
   --papel:#F7F6F3; --tinta:#15181C; --tenue:#6B6F76; --grilla:#E3E1DB;
@@ -93,7 +93,7 @@ footer{margin-top:30px;font-size:.75rem;color:var(--tenue)}
 <header>
   <div>
     <div class="eyebrow">Panel multimercado</div>
-    <h1>100 tickers</h1>
+    <h1 id="titulo">Panel de tickers</h1>
     <div class="mono" style="color:var(--tenue);font-size:.82rem" id="sub"></div>
   </div>
   <div class="kpis" id="kpis"></div>
@@ -342,6 +342,7 @@ const grande = v => {
   const m=D.meta, arriba=D.panel.filter(r=>r.ab===true).length,
         abajo=D.panel.filter(r=>r.ab===false).length,
         alc=D.panel.filter(r=>r.tend==='alcista').length;
+  $('#titulo').textContent=`${m.n_master} tickers`;
   $('#sub').textContent=`Cierres al ${m.corte} · ${m.n_series} de ${m.n_master} series`;
   $('#kpis').innerHTML=[[arriba,'sobre MA200','alza'],[abajo,'bajo MA200','baja'],
     [alc,'tendencia alcista','']].map(([v,l,c])=>
