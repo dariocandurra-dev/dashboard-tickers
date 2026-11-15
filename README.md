@@ -299,3 +299,103 @@ foto ya calculada en Python. Forzar el cálculo de las 88 series completas tarda
 125 ms.
 
 Con el panel completo de 127 series el archivo queda en torno a **1,5 MB**.
+
+---
+
+# Diagnóstico técnico
+
+El panel ya no solo muestra qué papeles están debajo de su MA200: los clasifica.
+La distinción que importa es entre un retroceso dentro de una tendencia sana y
+una tendencia rota, dos situaciones opuestas que la distancia a la media muestra
+igual.
+
+```
+templates/indicadores.js   Métricas (ahora con pendiente, drawdown 52s y z)
+templates/diagnostico.js   Motor de reglas y textos
+```
+
+Los dos motores se inyectan en `templates/dashboard.html` reemplazando las marcas
+`/*__INDICADORES__*/` y `/*__DIAGNOSTICO__*/`. Viven en archivos propios para
+poder probarlos con `node` contra la referencia de Python.
+
+## Métricas nuevas
+
+| Métrica | Qué mide | Por qué |
+|---|---|---|
+| `pend_ma200` | Variación de la MA200 en 20 ruedas | Separa el retroceso (media subiendo) del cambio de tendencia (media girada) |
+| `dd52` | Caída desde el máximo de 252 ruedas | Castigo del último año, no de toda la serie |
+| `z_ma200` | Distancia a la MA200 en jornadas de volatilidad | Hace comparables activos con volatilidades muy distintas |
+| `vol60` | Volatilidad anualizada de 60 ruedas | Denominador del z |
+
+## Por qué el z y no el porcentaje
+
+En este panel la volatilidad anual va de **4% a 246%**. Con cierres al 13-nov,
+LOMA estaba 18,1% debajo de su MA200 y GGAL 32,6%: parecen situaciones muy
+distintas, pero normalizadas son casi idénticas (z −9,2 y −11,4). Un umbral en
+porcentaje marcaría extremo al volátil y normal al tranquilo, que es justo el
+error a evitar. El porcentaje queda como control secundario para que un activo
+muy quieto no figure como extremo por una caída trivial.
+
+**El denominador es la volatilidad de 60 ruedas, no la de 20**, porque la ventana
+corta se infla por la misma caída que se está midiendo. Durante su derrumbe, la
+volatilidad de 20 ruedas de INTC pasó de 78% a 140%: dividir por ese número
+disimula el desplome. La de 60 quedó en 97%.
+
+## Los siete estados
+
+Gana la primera regla que da verdadero; el orden está elegido, no es casual.
+
+| Estado | Condición | Color |
+|---|---|---|
+| **Sin MA200** | Menos de 200 ruedas de historia | Gris |
+| **Vigilar rebote** | z ≤ −9, al menos −6%, RSI ≤ 35 y el histograma del MACD mejorando | Ámbar |
+| **Tendencia bajista** | Bajo MA200, MA200 cayendo **y** death cross | Rojo |
+| **Debilitándose** | Bajo MA200 y **uno solo** de los dos roto | Naranja |
+| **Retroceso en alza** | Bajo MA200, z entre −9 y −0,5, MA200 subiendo, golden cross y RSI < 48 | Verde |
+| **Extendido** | Sobre MA200 con z ≥ 10 o RSI ≥ 70 | Ámbar |
+| **Alcista sana** | Sobre MA200, golden cross, RSI entre 45 y 68 | Verde |
+| **Sin señal** | El resto | Gris |
+
+Tres decisiones que conviene conocer antes de recalibrar:
+
+- **Capitulación se evalúa antes que tendencia bajista.** Casi todo lo muy
+  sobrevendido está además en tendencia bajista; lo que las separa es si el
+  momento vendedor se está agotando.
+- **"Debilitándose" existe porque sin ese estado el espacio queda mal cubierto.**
+  Un papel bajo la MA200 con la media girando pero el golden cross intacto no es
+  ni retroceso sano ni tendencia confirmada. Sin ese estado, 45 de 130 papeles
+  caían en "sin señal" justo cuando la tendencia estaba cambiando.
+- **"Vigilar rebote" no es una compra.** Es contratendencia, el estado más
+  riesgoso del tablero, y el texto lo dice.
+
+## Cómo recalibrar
+
+Los umbrales están en el bloque `DIAG_CFG` al principio de
+`templates/diagnostico.js`. Se editan ahí y el panel se regenera solo en la
+próxima corrida.
+
+Los valores actuales salen de los percentiles del propio panel: `zExtremo` en −9
+es el decil inferior (p10 = −9,2) y `zExtendido` en 10 el superior (p90 = 10,4).
+Si el panel cambia mucho de composición, conviene recalcular esos percentiles en
+lugar de mover los números a ojo. Subir `rsiPullback` de 48 amplía los retrocesos
+detectados a costa de más ruido; bajar `zExtremo` a −11 deja solo las
+capitulaciones más severas.
+
+## Verificación
+
+- Las métricas del navegador coinciden con Python: error relativo máximo **4·10⁻⁸**,
+  sin una sola diferencia de nulos en 221.080 observaciones.
+- El diagnóstico se calcula por dos caminos distintos — la tabla usa los insumos
+  que vienen de Python, la ficha recalcula la serie entera en el navegador — y
+  **coinciden en los 130 papeles**. Si divergieran, el badge contradiría a la
+  tarjeta.
+
+## Lo que el diagnóstico no puede ver
+
+El panel guarda solo cierres: sin volumen ni máximos y mínimos del día no hay
+forma de calcular **ATR** ni **volumen relativo**, así que no puede confirmar si
+una ruptura de la MA200 vino con volumen de capitulación o con goteo sin
+compradores. Tampoco mira valuación ni resultados: un papel puede estar 30% abajo
+porque sus ganancias se desplomaron o por una sobreventa con fundamentales
+intactos, y el motor no los distingue. Agregar volumen implica rebajar OHLCV
+completo y cambiar el esquema de datos.
