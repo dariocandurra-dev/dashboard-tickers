@@ -33,6 +33,11 @@ from src import alerts as A
 SALIDA = C.ROOT / "Dashboard_Tickers.html"
 
 
+def _n(v, dec: int):
+    """Numero redondeado, o None si falta. JSON no tiene NaN."""
+    return None if v is None or pd.isna(v) else round(float(v), dec)
+
+
 def _r(serie: pd.Series, dec: int) -> list:
     """Redondea y convierte a lista con None en lugar de NaN (JSON no tiene NaN)."""
     return [None if pd.isna(v) else round(float(v), dec) for v in serie]
@@ -104,6 +109,20 @@ def construir_payload() -> dict:
             "dd": None if pd.isna(r.get("drawdown")) else round(float(r["drawdown"]), 4),
             "tend": r.get("tendencia_larga") if pd.notna(r.get("tendencia_larga")) else "",
             "ab": bool(r.get("above_ma200_conf")) if pd.notna(r.get("above_ma200_conf")) else None,
+            # Insumos del diagnostico tecnico. Viajan calculados para que la
+            # tabla no tenga que procesar las 130 series al abrir la pagina;
+            # el motor de reglas que los consume es el mismo que usa la ficha.
+            "dg": {
+                "dist": _n(r.get("dist_ma200"), 4),
+                "z": _n(r.get("z_ma200"), 2),
+                "pend": _n(r.get("pend_ma200"), 4),
+                "rsi": _n(r.get("rsi14"), 1),
+                "hist": _n(r.get("macd_hist"), 3),
+                "histPrev": _n(r.get("macd_hist_prev"), 3),
+                "ma50sobre200": None if pd.isna(r.get("tendencia_larga"))
+                                else r.get("tendencia_larga") == "alcista",
+                "dd52": _n(r.get("dd52"), 4),
+            },
         })
 
     # --- Alertas ----------------------------------------------------------
@@ -180,7 +199,17 @@ def main() -> None:
     blob = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
     print(f"  datos embebidos: {len(blob) / 1e6:.1f} MB")
 
-    plantilla = (C.ROOT / "templates" / "dashboard.html").read_text(encoding="utf-8")
+    # Los motores viven en archivos propios y se inyectan aca: asi cada uno se
+    # puede probar con node por separado contra la referencia de Python, en vez
+    # de quedar enterrado en el HTML.
+    tpl_dir = C.ROOT / "templates"
+    plantilla = (tpl_dir / "dashboard.html").read_text(encoding="utf-8")
+    for marca, archivo in (("/*__INDICADORES__*/", "indicadores.js"),
+                           ("/*__DIAGNOSTICO__*/", "diagnostico.js")):
+        if marca not in plantilla:
+            raise SystemExit(f"Falta la marca {marca} en templates/dashboard.html")
+        plantilla = plantilla.replace(
+            marca, (tpl_dir / archivo).read_text(encoding="utf-8"))
     html = plantilla.replace("/*__DATOS__*/", blob)
     SALIDA.write_text(html, encoding="utf-8")
 
