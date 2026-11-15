@@ -173,8 +173,9 @@ def snapshot(ind_long: pd.DataFrame, sig_long: pd.DataFrame,
     cols = ["ticker", "empresa", "sector", "pais", "currency", "date", "close",
             "sma50", "sma200", "dist_ma200", "above_ma200", "above_ma200_conf",
             "cross_down_ma200_conf", "dias_desde_cruce_ma200_conf", "tendencia_larga", "macd", "macd_signal",
-            "macd_hist", "macd_alcista", "macd_cruce_bajista", "rsi14", "rsi_zona",
-            "vol20", "drawdown", "status"]
+            "macd_hist", "macd_hist_prev", "macd_alcista", "macd_cruce_bajista",
+            "rsi14", "rsi_zona", "vol20", "vol60", "drawdown",
+            "dd52", "pend_ma200", "z_ma200", "status"]
     return snap[[c for c in cols if c in snap.columns]].sort_values("ticker")
 
 

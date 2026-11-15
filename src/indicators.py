@@ -109,6 +109,39 @@ def drawdown(close: pd.Series) -> pd.DataFrame:
     })
 
 
+def drawdown_52s(close: pd.Series, window: int = TRADING_DAYS) -> pd.Series:
+    """Caida desde el maximo de las ultimas 252 ruedas (un anio bursatil).
+
+    Distinto del drawdown historico: mide el castigo del ultimo anio y no el
+    de toda la serie, que es lo relevante para juzgar una caida actual.
+    """
+    return close / close.rolling(window, min_periods=1).max() - 1.0
+
+
+def pendiente(ma: pd.Series, periodos: int = 20) -> pd.Series:
+    """Variacion porcentual de una media en `periodos` ruedas.
+
+    Separa el retroceso dentro de una tendencia alcista (media todavia
+    subiendo) del cambio de tendencia (media ya girada), distincion que la
+    distancia a la media por si sola no muestra.
+    """
+    return ma / ma.shift(periodos) - 1.0
+
+
+def z_distancia(dist: pd.Series, vol: pd.Series) -> pd.Series:
+    """Distancia a la media expresada en jornadas de volatilidad.
+
+    Permite comparar papeles con volatilidades muy distintas: en este panel
+    van de 4% a 246% anual, asi que un mismo porcentaje de distancia significa
+    cosas muy diferentes segun el activo.
+
+    Se usa la volatilidad de 60 ruedas: la de 20 se infla por la propia caida
+    que se esta midiendo y termina disimulando los derrumbes.
+    """
+    diaria = vol / np.sqrt(TRADING_DAYS)
+    return dist / diaria.where(diaria > 0)
+
+
 def compute_all(close: pd.Series) -> pd.DataFrame:
     """Calcula el set completo de indicadores para una serie de cierres."""
     close = close.dropna().sort_index()
@@ -133,6 +166,12 @@ def compute_all(close: pd.Series) -> pd.DataFrame:
     out["dist_ma50"] = close / out["sma50"] - 1.0
     # Spread MA50-MA200: positivo = golden cross vigente
     out["spread_ma50_200"] = out["sma50"] / out["sma200"] - 1.0
+
+    # --- Contexto de tendencia: insumos del diagnostico tecnico ---
+    out["dd52"] = drawdown_52s(close)
+    out["pend_ma200"] = pendiente(out["sma200"], 20)
+    out["z_ma200"] = z_distancia(out["dist_ma200"], out["vol60"])
+    out["macd_hist_prev"] = out["macd_hist"].shift(1)
 
     return out
 
