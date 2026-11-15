@@ -71,6 +71,24 @@ tbody tr.click{cursor:pointer}
 .chip{border:1px solid var(--grilla);background:var(--blanco);border-radius:14px;
   padding:3px 11px;font-size:.76rem;cursor:pointer;font-family:'IBM Plex Mono',monospace}
 .chip.on{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.badge{display:inline-block;padding:2px 8px;border-radius:3px;font-size:.7rem;
+  font-weight:600;white-space:nowrap;font-family:'IBM Plex Mono',monospace}
+.badge.verde  {background:#E2EFE9;color:#115C45}
+.badge.ambar  {background:#F7EEDC;color:#80601A}
+.badge.naranja{background:#F8E8DD;color:#8A4A1E}
+.badge.rojo   {background:#F6E4E2;color:#9E2B25}
+.badge.gris   {background:#EEEDE9;color:#6B6F76}
+.lectura{background:#FFF;border:1px solid var(--grilla);border-left:3px solid var(--acento);
+  border-radius:3px;padding:12px 14px;margin:12px 0}
+.lectura .enc{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.lectura p{font-size:.9rem;line-height:1.5;margin-bottom:9px}
+.factores{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));
+  gap:3px 16px;font-size:.76rem;font-family:'IBM Plex Mono',monospace}
+.factores div{display:flex;justify-content:space-between;gap:10px;
+  border-bottom:1px dotted var(--grilla);padding:2px 0}
+.factores span:first-child{color:var(--tenue)}
+.nota{font-size:.74rem;color:var(--tenue);line-height:1.5;
+  border-top:1px solid var(--grilla);padding-top:10px;margin-top:6px}
 .grupo{margin-bottom:16px}
 .grupo h3{font-size:.82rem;font-weight:600;margin-bottom:6px;
   display:flex;align-items:baseline;gap:8px}
@@ -126,6 +144,17 @@ footer{margin-top:30px;font-size:.75rem;color:var(--tenue)}
       <option value="1">Solo sobre la MA200</option>
       <option value="0">Solo bajo la MA200</option>
     </select>
+    <select id="f-diag">
+      <option value="">Cualquier diagnóstico</option>
+      <option value="_oport">Oportunidades (retroceso o rebote)</option>
+      <option value="pullback">Retroceso en alza</option>
+      <option value="rebote">Vigilar rebote</option>
+      <option value="deterioro">Debilitándose</option>
+      <option value="bajista">Tendencia bajista</option>
+      <option value="alcista">Alcista sana</option>
+      <option value="extendido">Extendido</option>
+      <option value="neutral">Sin señal</option>
+    </select>
     <input id="f-busca" placeholder="Buscar ticker o empresa" style="min-width:190px">
     <span class="mono" style="font-size:.78rem;color:var(--tenue)" id="conteo"></span>
   </div>
@@ -165,6 +194,7 @@ footer{margin-top:30px;font-size:.75rem;color:var(--tenue)}
   <h2 id="ficha-nombre" style="font-size:1.15rem"></h2>
   <div class="mono" id="ficha-taxo" style="font-size:.8rem;color:var(--tenue);margin-bottom:4px"></div>
   <div class="tarjetas" id="ficha-kpis"></div>
+  <div id="lectura"></div>
   <div id="aviso-moneda"></div>
   <div class="chart"><svg id="g-precio"></svg><div class="leyenda">
     <span><i style="background:var(--tinta)"></i>Cierre</span>
@@ -183,117 +213,13 @@ footer{margin-top:30px;font-size:.75rem;color:var(--tenue)}
 
 <section class="panel" id="p-calendario"><div id="lista-cal"></div></section>
 
-<footer id="pie"></footer>
+<footer><div id="pie"></div><div class="nota" id="metodo"></div></footer>
 </div>
 
 <script>
 const D = /*__DATOS__*/;
 
-/* ------------------------------------------------------------------
-   Motor de indicadores del navegador.
-
-   Replica exactamente src/indicators.py. Eso importa: las alertas se
-   calculan en Python y el dashboard solo muestra, asi que si las dos
-   implementaciones divergen el grafico contradice a la alerta.
-
-   Dos detalles de pandas que hay que respetar para que los numeros den
-   iguales y no "parecidos":
-
-   1. ewm(adjust=False) es la recursion simple e[i] = a*x[i] + (1-a)*e[i-1]
-      sembrada con el primer valor, NO el promedio ponderado acumulado.
-   2. min_periods cuenta observaciones NO nulas. Como la linea MACD arranca
-      en la rueda 25 (nula antes), su senal de 9 periodos recien queda
-      definida en la rueda 33, no en la 8.
-   ------------------------------------------------------------------ */
-
-function sma(x, n) {
-  const o = new Array(x.length).fill(null);
-  let s = 0;
-  for (let i = 0; i < x.length; i++) {
-    s += x[i];
-    if (i >= n) s -= x[i - n];
-    if (i >= n - 1) o[i] = s / n;
-  }
-  return o;
-}
-
-/* ewm(alpha=..., adjust=False, min_periods=minp) tolerando nulos de entrada:
-   un nulo no altera el estado y devuelve nulo, igual que pandas. */
-function ewmAlpha(x, alpha, minp) {
-  const o = new Array(x.length).fill(null);
-  let e = null, vistos = 0;
-  for (let i = 0; i < x.length; i++) {
-    const v = x[i];
-    if (v == null) continue;
-    e = (e === null) ? v : alpha * v + (1 - alpha) * e;
-    vistos++;
-    if (vistos >= minp) o[i] = e;
-  }
-  return o;
-}
-
-const ema = (x, span) => ewmAlpha(x, 2 / (span + 1), span);
-
-function macdCalc(x, fast = 12, slow = 26, signal = 9) {
-  const ef = ema(x, fast), es = ema(x, slow);
-  const linea = x.map((_, i) =>
-    (ef[i] == null || es[i] == null) ? null : ef[i] - es[i]);
-  const sig = ewmAlpha(linea, 2 / (signal + 1), signal);
-  const hist = linea.map((v, i) => (v == null || sig[i] == null) ? null : v - sig[i]);
-  return { macd: linea, sig, hist };
-}
-
-function rsiCalc(x, period = 14) {
-  const gan = new Array(x.length).fill(null);
-  const per = new Array(x.length).fill(null);
-  for (let i = 1; i < x.length; i++) {
-    const d = x[i] - x[i - 1];
-    gan[i] = d > 0 ? d : 0;
-    per[i] = d < 0 ? -d : 0;
-  }
-  const a = 1 / period;
-  const ag = ewmAlpha(gan, a, period), ap = ewmAlpha(per, a, period);
-  return x.map((_, i) => {
-    if (ag[i] == null || ap[i] == null) return null;
-    if (ap[i] === 0) return 100;
-    const rs = ag[i] / ap[i];
-    return 100 - 100 / (1 + rs);
-  });
-}
-
-/* Volatilidad anualizada: desvio de retornos log por raiz de 252. */
-function volCalc(x, n) {
-  const r = new Array(x.length).fill(null);
-  for (let i = 1; i < x.length; i++) r[i] = Math.log(x[i] / x[i - 1]);
-  const o = new Array(x.length).fill(null);
-  for (let i = n; i < x.length; i++) {
-    let s = 0;
-    for (let k = i - n + 1; k <= i; k++) s += r[k];
-    const m = s / n;
-    let v = 0;
-    for (let k = i - n + 1; k <= i; k++) v += (r[k] - m) ** 2;
-    o[i] = Math.sqrt(v / n) * Math.sqrt(252);   // ddof=0, como numpy
-  }
-  return o;
-}
-
-function drawdownCalc(x) {
-  let pico = -Infinity;
-  return x.map(v => { if (v > pico) pico = v; return v / pico - 1; });
-}
-
-/* Calcula todo para una serie densa de cierres (sin nulos internos). */
-function calcularTodo(c) {
-  const { macd, sig, hist } = macdCalc(c);
-  return {
-    c,
-    s50: sma(c, 50), s200: sma(c, 200),
-    macd, sig, hist,
-    rsi: rsiCalc(c),
-    vol20: volCalc(c, 20),
-    dd: drawdownCalc(c),
-  };
-}
+/*__INDICADORES__*/
 
 /* ------------------------------------------------------------------
    Reconstruccion de series. El payload trae solo cierres densos; aca se
@@ -318,14 +244,28 @@ function serie(tk){
   return _cache[tk] = {idx, ...ind};
 }
 
+/*__DIAGNOSTICO__*/
+
+/* Diagnostico de la tabla: usa los insumos que vienen en el payload, asi la
+   pagina abre sin recalcular 130 series. Es el MISMO motor que la ficha. */
+const _diagCache = {};
+function diagDe(tk){
+  if(_diagCache[tk]) return _diagCache[tk];
+  const r = D.panel.find(x => x.t === tk);
+  return _diagCache[tk] = generarDiagnosticoTecnico(r ? r.dg : null);
+}
+
 const C = {tinta:'#15181C',tenue:'#6B6F76',grilla:'#E3E1DB',alza:'#157A5B',
            baja:'#9E2B25',acento:'#2E3A8C'};
 const $ = s => document.querySelector(s);
 const el = (t,a={}) => {const e=document.createElementNS('http://www.w3.org/2000/svg',t);
   for(const k in a) e.setAttribute(k,a[k]); return e;};
 
-const pct  = (v,d=1) => v==null? '—' : (v*100).toFixed(d)+'%';
-const pctS = (v,d=1) => v==null? '—' : (v>=0?'+':'')+(v*100).toFixed(d)+'%';
+// Coma decimal en todo el panel, igual que los importes
+const _d  = (v,d) => v.toFixed(d).replace('.',',');
+const pct  = (v,d=1) => v==null? '—' : _d(v*100,d)+'%';
+const pctS = (v,d=1) => v==null? '—' :
+  (v>=0?'+':'−')+_d(Math.abs(v*100),d)+'%';
 const num  = (v,d=2) => v==null? '—' : v.toLocaleString('es-AR',
   {minimumFractionDigits:d,maximumFractionDigits:d});
 const grande = v => {
@@ -351,6 +291,18 @@ const grande = v => {
     `dentro de este HTML, no requiere conexión.`+
     (m.pendientes.length? ` Sin serie de precios: ${m.pendientes.join(', ')}.`:'')+
     (m.con_fundamentales? '': ' Los datos fundamentales todavía no fueron descargados.');
+  $('#metodo').innerHTML =
+    `<b>Cómo leer el diagnóstico.</b> Es un filtro técnico automático, no una ` +
+    `recomendación de inversión. Clasifica cada papel con reglas fijas sobre la ` +
+    `distancia a la MA200, la pendiente de esa media en 20 ruedas, el cruce MA50/MA200, ` +
+    `el RSI de 14 y el histograma del MACD. La distancia se normaliza por la volatilidad ` +
+    `de 60 ruedas y se expresa en <i>jornadas de volatilidad</i>, porque en este panel la ` +
+    `volatilidad anual va de 4% a 246% y un mismo porcentaje no significa lo mismo en ` +
+    `todos los activos. «Vigilar rebote» marca un papel muy castigado cuyo momento vendedor ` +
+    `afloja: es contra la tendencia y el estado más riesgoso del tablero, no una compra. ` +
+    `El panel no tiene volumen ni precios máximos y mínimos del día, así que no puede ` +
+    `confirmar capitulación por volumen ni calcular ATR. Nada de esto considera valuación, ` +
+    `resultados ni contexto macro.`;
 })();
 
 /* ---------- Cinta de amplitud ---------- */
@@ -436,6 +388,18 @@ function dibujarFicha(){
     ['Tendencia larga',fila.tend||'—']
   ].map(([l,v])=>`<div class="tarjeta"><div class="eyebrow">${l}</div><div class="v">${v}</div></div>`).join('');
 
+  // Lectura tecnica: el diagnostico se calcula sobre la serie completa que ya
+  // esta en memoria, no sobre el payload, y se verifica que coincida.
+  const dg = generarDiagnosticoTecnico(fotoUltimaRueda(serie(tk)));
+  $('#lectura').innerHTML =
+    `<div class="lectura">
+       <div class="enc"><span class="badge ${dg.badgeColor}">${dg.estado}</span>
+         <span class="eyebrow">Lectura técnica</span></div>
+       <p>${dg.resumenTexto}</p>
+       <div class="factores">` +
+       dg.factores.map(([k,v])=>`<div><span>${k}</span><span>${v}</span></div>`).join('') +
+     `</div></div>`;
+
   // Aviso de moneda: evita leer un precio en rupias o euros como si fuera USD
   const avisoCur=$('#aviso-moneda');
   if(fila.cur && fila.cur!=='USD'){
@@ -503,20 +467,23 @@ function dibujarFicha(){
 /* ---------- Tabla del panel ---------- */
 const COLS=[['t','Ticker',0],['e','Empresa',0],['g','Grupo',0],['sec','Sector',0],['c','Cierre',1],
   ['d200','vs MA200',1],['rsi','RSI',1],['mh','MACD hist.',1],['vol','Vol. 20d',1],
-  ['dd','Caída',1],['tend','Tendencia',0]];
+  ['dd','Caída',1],['diag','Diagnóstico',0]];
 let orden={k:'d200',asc:true};
 
 function pintarTabla(){
   const gru=$('#f-grupo').value, sec=$('#f-sector').value,
         tipo=$('#f-tipo').value, pais=$('#f-pais').value,
         ma=$('#f-ma200').value, q=$('#f-busca').value.toLowerCase().trim();
+  const fd=$('#f-diag').value;
   let d=D.panel.filter(r=>
     (!gru||r.g===gru)&&(!sec||r.sec===sec)&&(!tipo||r.tipo===tipo)&&
     (!pais||r.p===pais)&&
+    (!fd || (fd==='_oport' ? diagDe(r.t).esOportunidad : diagDe(r.t).clave===fd))&&
     (ma===''||(ma==='1'?r.ab===true:r.ab===false))&&
     (!q||r.t.toLowerCase().includes(q)||(r.e||'').toLowerCase().includes(q)));
   d.sort((a,b)=>{
-    const x=a[orden.k],y=b[orden.k];
+    const x=orden.k==='diag'?diagDe(a.t).estado:a[orden.k],
+          y=orden.k==='diag'?diagDe(b.t).estado:b[orden.k];
     if(x==null) return 1; if(y==null) return -1;
     return (typeof x==='string'? x.localeCompare(y) : x-y)*(orden.asc?1:-1);
   });
@@ -531,10 +498,11 @@ function pintarTabla(){
       <td class="num mono">${num(r.c)}${r.cur&&r.cur!=='USD'?' <span style="color:var(--tenue);font-size:.7rem">'+r.cur+'</span>':''}</td>
       <td class="num mono" style="${col(r.d200)}">${pctS(r.d200)}</td>
       <td class="num mono">${num(r.rsi,0)}</td>
-      <td class="num mono" style="${col(r.mh)}">${r.mh==null?'—':(r.mh>=0?'+':'')+r.mh.toFixed(2)}</td>
+      <td class="num mono" style="${col(r.mh)}">${r.mh==null?'—':(r.mh>=0?'+':'−')+_d(Math.abs(r.mh),2)}</td>
       <td class="num mono">${pct(r.vol)}</td>
       <td class="num mono">${pct(r.dd)}</td>
-      <td>${r.tend||''}</td></tr>`;}).join('');
+      <td><span class="badge ${diagDe(r.t).badgeColor}">${diagDe(r.t).estado}</span></td>
+      </tr>`;}).join('');
   $('#tabla thead').querySelectorAll('th').forEach(th=>th.onclick=()=>{
     const k=th.dataset.k; orden = orden.k===k?{k,asc:!orden.asc}:{k,asc:true}; pintarTabla();});
   $('#tabla tbody').querySelectorAll('tr').forEach(tr=>tr.onclick=()=>irAFicha(tr.dataset.t));
@@ -611,7 +579,7 @@ function pintarMapa(){
       <span>${g.length} · promedio ${prom==null?'—':pctS(prom)} vs MA200</span></h3>
       <div class="tiles">`+g.map(r=>
         `<div class="tile${r.tipo==='ETF'?' etf':''}" data-t="${r.t}"
-          style="background:${colorD200(r.d200)}" title="${r.e} · ${r.ind||''}">
+          style="background:${colorD200(r.d200)}" title="${r.e} · ${r.ind||''}&#10;${diagDe(r.t).estado}: ${diagDe(r.t).resumenTexto}">
           <div class="tk">${r.t}</div><div class="vv">${pctS(r.d200)}</div></div>`).join('')+
       `</div></div>`;}).join('');
   $('#mapa').querySelectorAll('.tile').forEach(t=>t.onclick=()=>irAFicha(t.dataset.t));
@@ -682,7 +650,8 @@ function irAFicha(tk){ $('#f-ticker').value=tk; irA('ficha'); }
       c.classList.toggle('on',selB100.includes(t)); pintarB100();});
   }
 
-  ['#f-grupo','#f-sector','#f-pais','#f-tipo','#f-ma200'].forEach(s=>$(s).onchange=pintarTabla);
+  ['#f-grupo','#f-sector','#f-pais','#f-tipo','#f-ma200','#f-diag']
+    .forEach(s=>$(s).onchange=pintarTabla);
   $('#m-orden').onchange=pintarMapa;
   $('#m-etf').onchange=pintarMapa;
   $('#f-busca').oninput=pintarTabla;
